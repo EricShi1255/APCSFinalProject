@@ -6,12 +6,13 @@ public class GameElement {
   public GameElement() {
   }
   public int getX() {
-    return 0;
+    return x;
   }
   public int getY() {
-    return 0;
+    return y;
   }
   public void setColor(color c) {
+    colorful = c;
   }
   public boolean isCollided() {
     return true;
@@ -20,5 +21,5 @@ public class GameElement {
   }
   
   
-  
+    
 }
