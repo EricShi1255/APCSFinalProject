@@ -4,6 +4,9 @@ public class Obstacle extends GameElement {
   
   public Obstacle(int xcor, int ycor, color COLOR) {
     super(xcor,ycor,COLOR);
+    x = xcor;
+    y = ycor;
+    colorful = COLOR;
   }
   
 }

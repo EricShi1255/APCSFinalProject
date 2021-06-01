@@ -4,6 +4,9 @@ public class Food extends GameElement{
   
   public Food(int xcor, int ycor, color COLOR) {
     super(xcor,ycor,COLOR);
+    x = xcor;
+    y = ycor;
+    colorful = COLOR;
   }
   
 }

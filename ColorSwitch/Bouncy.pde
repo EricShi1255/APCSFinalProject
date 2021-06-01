@@ -6,7 +6,9 @@ public class Bouncy extends GameElement {
   
   public Bouncy(int xcor, int ycor, color COLOR) {
     super(xcor,ycor,COLOR);
-    
+    x = xcor;
+    y = ycor;
+    colorful = COLOR;
   }
   
   //placeholder return values for now;
