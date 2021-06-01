@@ -9,11 +9,12 @@ public class Bouncy extends GameElement {
     x = xcor;
     y = ycor;
     colorful = COLOR;
+    dy = -5;
   }
   
   //placeholder return values for now;
   public void display() {
-    color(colorful);
+    fill(colorful);
     circle(x,y,50);
   }
   public boolean isDead() {
@@ -24,5 +25,6 @@ public class Bouncy extends GameElement {
   public void getScore() {
   }
   public void move() {
+    y += dy; 
   }
 }
