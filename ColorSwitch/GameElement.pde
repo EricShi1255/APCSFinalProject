@@ -3,7 +3,10 @@ public class GameElement {
   private color colorful;
   
   //placeholder return values for now
-  public GameElement() {
+  public GameElement(int xcor, int ycor, color COLOR) {
+    x = xcor;
+    y = ycor;
+    colorful = COLOR;
   }
   public int getX() {
     return x;
