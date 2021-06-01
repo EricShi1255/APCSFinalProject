@@ -8,7 +8,7 @@ void setup() {
   Bouncy A = new Bouncy(500,500,0);
   A.display();
 
-  //System.out.println(A.getX());
+  System.out.println(A.getX());
   
 }
 void draw() {
