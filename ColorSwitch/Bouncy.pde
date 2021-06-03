@@ -10,6 +10,7 @@ public class Bouncy extends GameElement {
     y = ycor;
     colorful = COLOR;
     dy = -5;
+    ay = 1;
   }
   
   //placeholder return values for now;
@@ -24,7 +25,14 @@ public class Bouncy extends GameElement {
   }
   public void getScore() {
   }
+  public void setAy() {
+    dy += 5;
+  }
   public void move() {
     y += dy; 
+    dy += ay;
+    if (y > 900) {
+      dy = -1 * dy;
+    }
   }
 }
