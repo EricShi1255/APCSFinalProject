@@ -8,5 +8,12 @@ public class Obstacle extends GameElement {
     y = ycor;
     colorful = COLOR;
   }
+   public void display() {
+    fill(colorful);
+    circle(x,y,50);
+  }
+  
+  public void move() {
+  }
   
 }
