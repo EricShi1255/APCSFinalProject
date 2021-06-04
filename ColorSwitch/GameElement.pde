@@ -14,15 +14,14 @@ public class GameElement {
   public int getY() {
     return y;
   }
-  public void setColor(color c) {
-    colorful = c;
-  }
-  public boolean isCollided() {
-    return true;
+  public int iscollide(int ix, int iy) {
+    //return true;
+    return(abs(y-iy));
+      
   }
   public void move() {
     
   }
   
-    
+  //cutting off entire class for now;  
 }
