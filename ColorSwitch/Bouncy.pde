@@ -13,7 +13,13 @@ public class Bouncy extends GameElement {
     ay = 1;
   }
   
-  //placeholder return values for now;
+  public int getX() {
+    return x;
+  }
+  public int getY() {
+    return y;
+  }
+  
   public void display() {
     fill(colorful);
     circle(x,y,50);
@@ -25,14 +31,20 @@ public class Bouncy extends GameElement {
   }
   public void getScore() {
   }
+  public void setColor(color c) {
+    colorful = c;
+  }
   public void setAy() {
     dy += 5;
   }
   public void move() {
+    //bouncing
     y += dy; 
     dy += ay;
     if (y > 900) {
       dy = -20;
     }
+    //colors
   }
+  
 }
