@@ -18,9 +18,19 @@ public class Food extends GameElement{
     dy = 5;
   }
   
-   public void display() {
+  public void display() {
     fill(colorful);
     circle(x,y,20);
+  }
+  
+  public int getX() {
+    return x;
+  }
+  public int getY() {
+    return y;
+  }
+  public color getColor() {
+     return colorful;
   }
   
   public boolean iscollide(int ix, int iy) {

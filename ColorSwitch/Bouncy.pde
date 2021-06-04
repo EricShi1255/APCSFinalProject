@@ -19,6 +19,9 @@ public class Bouncy extends GameElement {
   public int getY() {
     return y;
   }
+  public color getColor() {
+     return colorful;
+  }
   
   public void display() {
     fill(colorful);
@@ -34,14 +37,15 @@ public class Bouncy extends GameElement {
   public void setColor(color c) {
     colorful = c;
   }
-  public void setAy() {
-    dy += 5;
+  public void resetDy() {
+    dy = -20;
   }
   public void move() {
     //bouncing
     y += dy; 
     dy += ay;
-    if (y > 900) {
+    
+    if (y > 900 && !startgame) {
       dy = -20;
     }
     //colors

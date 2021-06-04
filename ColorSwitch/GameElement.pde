@@ -8,20 +8,22 @@ public class GameElement {
     y = ycor;
     colorful = COLOR;
   }
-  public int getX() {
-    return x;
+   public GameElement(int xcor, int ycor) {
+    x = xcor;
+    y = ycor;
   }
-  public int getY() {
-    return y;
-  }
+   
+  
+  /*
   public int iscollide(int ix, int iy) {
     //return true;
     return(abs(y-iy));
       
   }
+  
   public void move() {
     
   }
-  
+  */
   //cutting off entire class for now;  
 }

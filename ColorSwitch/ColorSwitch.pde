@@ -12,6 +12,7 @@ color[] colors = {BLUE, YELLOW, RED, TURQ};
 
 int mousepressed = 0;
 boolean startgame = false;
+boolean gameover = false;
 
 
 void setup() {
@@ -30,15 +31,25 @@ void setup() {
 }
 
 void newObstacle() {
-  if (Math.random() > 0.99) {
-    Obstacle B = new Obstacle(350, 200); 
+  if (Math.random() > 0.993) {
+    Obstacle B = new Obstacle(350, 100); 
     obstacles.add(B);
   }
+}
+void newFood() {
+  if (Math.random() > 0.993) {
+    Food C = new Food(350, 100); 
+    foodies.add(C);
+  }
+}
+void endgame() {
+  //if gameover, do something;
 }
  
 void draw() {
   background(20);
   newObstacle();
+  newFood();
   
   Bouncy curr = bouncies.get(bouncies.size()-1);
   curr.move();
@@ -46,6 +57,11 @@ void draw() {
   
   int currX = curr.getX();
   int currY = curr.getY();
+  color ncolor = curr.getColor();
+  
+  if (currY > 1200) {
+    gameover = true;
+  }
   
   //dealing with obstacles
   for (int i = 0; i < obstacles.size(); i++) {
@@ -55,8 +71,9 @@ void draw() {
     }
     
     if (blockade.iscollide(currX, currY)) {
-      blockade.getColor();
-      curr.setColor(BLUE);
+      if (blockade.getColor() != ncolor || ncolor != WHITE) {
+        gameover = true;
+      }
     }
  
     blockade.display();
@@ -69,13 +86,14 @@ void draw() {
       edible.move();
      }
      if (edible.iscollide(currX, currY)) {
-       curr.setColor(BLUE);
+       curr.setColor(edible.getColor());
      }
      edible.display();
   }
   
   mousepressed--;
   curr.display();
+  System.out.println(gameover);
 } 
 
 void mousePressed() {

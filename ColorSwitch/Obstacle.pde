@@ -27,7 +27,9 @@ public class Obstacle extends GameElement {
   public int getY() {
     return y;
   }
-  
+  public color getColor() {
+     return colorful;
+  }
   public boolean iscollide(int ix, int iy) {
     return(abs(x-ix) < 20 && abs(y-iy) < 20);
   }
