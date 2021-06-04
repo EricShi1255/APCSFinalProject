@@ -32,7 +32,7 @@ public class Bouncy extends GameElement {
     y += dy; 
     dy += ay;
     if (y > 900) {
-      dy = -1 * dy;
+      dy = -20;
     }
   }
 }

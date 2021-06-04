@@ -21,8 +21,8 @@ public class GameElement {
     return true;
   }
   public void move() {
+    
   }
-  
   
     
 }

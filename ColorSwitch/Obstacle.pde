@@ -7,6 +7,7 @@ public class Obstacle extends GameElement {
     x = xcor;
     y = ycor;
     colorful = COLOR;
+    dy = 1;
   }
    public void display() {
     fill(colorful);
@@ -14,6 +15,7 @@ public class Obstacle extends GameElement {
   }
   
   public void move() {
+    y += dy;
   }
   
 }
