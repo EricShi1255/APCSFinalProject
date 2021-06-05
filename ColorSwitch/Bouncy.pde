@@ -11,6 +11,7 @@ public class Bouncy extends GameElement {
     colorful = COLOR;
     dy = -5;
     ay = 1;
+    score = 0;
   }
   
   public int getX() {
@@ -27,12 +28,20 @@ public class Bouncy extends GameElement {
     fill(colorful);
     circle(x,y,50);
   }
+  
+  public void displayScore() {
+    textSize(32);
+    fill(WHITE);
+    text(score, 350, 100);
+  }
   public boolean isDead() {
     return false;
   }
-  public void setScore() {
+  public void addScore() {
+    score++;
   }
-  public void getScore() {
+  public int getScore() {
+    return score;
   }
   public void setColor(color c) {
     colorful = c;

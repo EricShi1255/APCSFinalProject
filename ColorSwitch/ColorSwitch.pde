@@ -42,8 +42,11 @@ void newFood() {
     foodies.add(C);
   }
 }
+
 void endgame() {
   //if gameover, do something;
+  obstacles.clear();
+  
 }
  
 void draw() {
@@ -87,11 +90,14 @@ void draw() {
      }
      if (edible.iscollide(currX, currY)) {
        curr.setColor(edible.getColor());
+       curr.addScore();
+       foodies.remove(i);
      }
      edible.display();
   }
   
   mousepressed--;
+  curr.displayScore();
   curr.display();
   System.out.println(gameover);
 } 
