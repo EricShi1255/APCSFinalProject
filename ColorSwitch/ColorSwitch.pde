@@ -32,13 +32,13 @@ void setup() {
 
 void newObstacle() {
   if (Math.random() > 0.993) {
-    Obstacle B = new Obstacle(350, 100); 
+    Obstacle B = new Obstacle(350, 150); 
     obstacles.add(B);
   }
 }
 void newFood() {
   if (Math.random() > 0.993) {
-    Food C = new Food(350, 100); 
+    Food C = new Food(350, 150); 
     foodies.add(C);
   }
 }
@@ -78,7 +78,7 @@ void draw() {
         gameover = true;
       }
     }
- 
+    blockade.moveB();
     blockade.display();
   }
   
@@ -113,10 +113,16 @@ void keyPressed() {
       startgame = true;
     }
     
-    //number of steps obstacle will drop down
-    mousepressed = 30;
+
     Bouncy curr = bouncies.get(bouncies.size()-1);
     curr.resetDy();
+    
+    if (curr.getY() < 820) {
+      //only starts scrolling when bouncy goes high enough
+      //this lets bouncy hover in place when player wants to wait
+      //number of steps obstacle will drop down
+      mousepressed = 30;
+    }
   }
     
 }
