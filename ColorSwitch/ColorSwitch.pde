@@ -31,13 +31,26 @@ void setup() {
 }
 
 void newObstacle() {
-  if (Math.random() > 0.993) {
+  boolean create = true; 
+  for (Obstacle element: obstacles) {
+    if (element.getY() < 350) {
+      create = false;
+    }
+  }
+  if (create) {
     Obstacle B = new Obstacle(350, 150); 
     obstacles.add(B);
   }
 }
+
 void newFood() {
-  if (Math.random() > 0.993) {
+  boolean create = true; 
+  for (Food element: foodies) {
+    if (element.getY() < 350) {
+      create = false;
+    }
+  }
+  if (create) {
     Food C = new Food(350, 150); 
     foodies.add(C);
   }
@@ -46,10 +59,18 @@ void newFood() {
 void endgame() {
   //if gameover, do something;
   obstacles.clear();
+  background(20);
+  textSize(48);
+  textAlign(CENTER);
+  text("GAME OVER", 350, 150);
   
+  Bouncy curr = bouncies.get(bouncies.size()-1);
+  int finalscore = curr.getScore();
+  text("Score: " + finalscore, 350, 300);
 }
  
 void draw() {
+  if (!gameover) {
   background(20);
   newObstacle();
   newFood();
@@ -99,6 +120,11 @@ void draw() {
   mousepressed--;
   curr.displayScore();
   curr.display();
+  }
+  
+  if (gameover) {
+    endgame();
+  }
   System.out.println(gameover);
 } 
 
