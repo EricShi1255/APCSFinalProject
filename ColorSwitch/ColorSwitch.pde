@@ -40,7 +40,7 @@ void newObstacle() {
   if (create) {
     //Obstacle B = new Obstacle(350, 150); 
     //obstacles.add(B);
-   gate();
+   circley();
   }
 }
 
@@ -105,7 +105,7 @@ void draw() {
         gameover = true;
       }
     }
-    blockade.moveB();
+    //blockade.moveB();
     blockade.display();
   }
   
@@ -165,4 +165,18 @@ public void gate() {
      Obstacle A = new Obstacle(i*350, 150, colors[rnd]);
      obstacles.add(A);
    }
+}
+
+public void circley() {
+  int r = 250;
+  int nx;
+  int ny;
+  int rnd = new Random().nextInt(colors.length);
+  
+  for (float theta = 0; theta <= 540 ; theta+=60) {
+    nx = (int)(r * cos(theta));
+    ny = (int)(r * sin(theta));
+    Obstacle A = new Obstacle(350+nx,ny,colors[rnd]);
+    obstacles.add(A);
+  }
 }
