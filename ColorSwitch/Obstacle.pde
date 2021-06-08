@@ -36,8 +36,14 @@ public class Obstacle extends GameElement {
   
   public void display() {
     fill(colorful);
+    circle(x,y,50);
+    //rect(x,y,80,50);
+  }
+  
+  public void display2() {
+    fill(colorful);
     //circle(x,y,50);
-    rect(x,y,100,50);
+    rect(x,y,80,50);
   }
   
   //y-direction movement
@@ -50,6 +56,10 @@ public class Obstacle extends GameElement {
     if (x > 700) {
       x = 0;
     }
+  }
+  public void move(int nx, int ny) {
+    x = nx;
+    y = ny;
   }
   
 }
