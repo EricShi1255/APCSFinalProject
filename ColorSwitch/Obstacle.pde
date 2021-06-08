@@ -31,17 +31,25 @@ public class Obstacle extends GameElement {
      return colorful;
   }
   public boolean iscollide(int ix, int iy) {
-    return(abs(x-ix) < 20 && abs(y-iy) < 20);
+    return(abs(x-ix) < 30 && abs(y-iy) < 30);
   }
   
   public void display() {
     fill(colorful);
     //circle(x,y,50);
-    rect(0,y,700,50);
+    rect(x,y,100,50);
   }
   
+  //y-direction movement
   public void move() {
     y += dy;
+  }
+  //x-direction movement
+  public void moveB() {
+    x += dy;
+    if (x > 700) {
+      x = 0;
+    }
   }
   
 }

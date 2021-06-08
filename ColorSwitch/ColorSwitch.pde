@@ -33,13 +33,14 @@ void setup() {
 void newObstacle() {
   boolean create = true; 
   for (Obstacle element: obstacles) {
-    if (element.getY() < 350) {
+    if (element.getY() < 500) {
       create = false;
     }
   }
   if (create) {
-    Obstacle B = new Obstacle(350, 150); 
-    obstacles.add(B);
+    //Obstacle B = new Obstacle(350, 150); 
+    //obstacles.add(B);
+   gate();
   }
 }
 
@@ -47,6 +48,11 @@ void newFood() {
   boolean create = true; 
   for (Food element: foodies) {
     if (element.getY() < 350) {
+      create = false;
+    }
+  }
+  for (Obstacle element: obstacles) {
+    if (element.getY() < 250) {
       create = false;
     }
   }
@@ -63,7 +69,7 @@ void endgame() {
   textSize(48);
   textAlign(CENTER);
   text("GAME OVER", 350, 150);
-  
+    
   Bouncy curr = bouncies.get(bouncies.size()-1);
   int finalscore = curr.getScore();
   text("Score: " + finalscore, 350, 300);
@@ -83,7 +89,7 @@ void draw() {
   int currY = curr.getY();
   color ncolor = curr.getColor();
   
-  if (currY > 1200) {
+  if (currY > 1300) {
     gameover = true;
   }
   
@@ -95,7 +101,7 @@ void draw() {
     }
     
     if (blockade.iscollide(currX, currY)) {
-      if (blockade.getColor() != ncolor || ncolor != WHITE) {
+      if (blockade.getColor() != ncolor && ncolor != WHITE) {
         gameover = true;
       }
     }
@@ -149,6 +155,14 @@ void keyPressed() {
       //number of steps obstacle will drop down
       mousepressed = 30;
     }
-  }
-    
+  }  
+}
+
+//---obstacle methods---//
+public void gate() {
+   int rnd = new Random().nextInt(colors.length);
+   for (int i = 0; i < 2; i++) {
+     Obstacle A = new Obstacle(i*350, 150, colors[rnd]);
+     obstacles.add(A);
+   }
 }
