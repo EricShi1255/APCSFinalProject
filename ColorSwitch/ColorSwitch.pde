@@ -25,8 +25,8 @@ void setup() {
   //Obstacle B = new Obstacle(350, 200, BLUE, 0); 
   //obstacles.add(B);
   
-  //Food C = new Food(350, 600, BLUE); 
-  //foodies.add(C);
+  Food C = new Food(350, 700, BLUE); 
+  foodies.add(C);
    
 }
 
@@ -37,11 +37,27 @@ void newObstacle() {
       create = false;
     }
   }
+  for (Food element: foodies) {
+    if (element.getY() < 400) {
+      create = false;
+    }
+  }
   if (create) {
+   int rand = new Random().nextInt(10);
+   if (rand < 4) {
+     circley();
+   }
+   if (rand >= 4 && rand <= 6) {
+     plusSign();
+   }
+   if (rand > 6) {
+     gate();
+   }
+   
    //Obstacle B = new Obstacle(350, 150); 
    //obstacles.add(B);
    //circley();
-    plusSign();
+    //plusSign();
    //gate();
   }
 }
@@ -59,7 +75,7 @@ void newFood() {
     }
   }
   if (create) {
-    Food C = new Food(350, 150); 
+    Food C = new Food(350, 50); 
     foodies.add(C);
   }
 }
@@ -81,7 +97,7 @@ void draw() {
   if (!gameover) {
   background(20);
   newObstacle();
-  //newFood();
+  newFood();
   
   Bouncy curr = bouncies.get(bouncies.size()-1);
   curr.move();
@@ -122,6 +138,10 @@ void draw() {
        curr.addScore();
        foodies.remove(i);
      }
+     if (Math.random() > 0.995) {
+      int index = new Random().nextInt(colors.length);
+      edible.setColor(colors[index]);
+    }
      edible.display();
   }
   
@@ -162,9 +182,15 @@ void keyPressed() {
 
 //---obstacle methods below this line---//
 public void gate() {
-   int rnd = new Random().nextInt(colors.length);
-   for (int i = 0; i < 7; i++) {
-     Obstacle A = new Obstacle(i*100, 150, colors[rnd], 1);
+   int rnd = 0;
+   for (int i = 0; i < 12; i++) {
+     if (i % 3 == 0) {
+       rnd++;
+     }
+     if (rnd >= 4) {
+       rnd = 0;
+     }
+     Obstacle A = new Obstacle(i*58, 150, colors[rnd], 1);
      obstacles.add(A);
    }
 }
@@ -199,18 +225,28 @@ public void circley() {
 public void plusSign() {
     //makes a plus sign that spins (yeah)/
     int index = new Random().nextInt(colors.length);
-      for (int r = -150; r <= 150; r+=50) {
+    
+      for (int r = 50; r <= 150; r += 50) {
       //creates obstacle
-        Obstacle A = new Obstacle(500, 50, colors[index], 2, r, 45, -1);
-        obstacles.add(A);
-        Obstacle B = new Obstacle(500, 50, colors[index], 2, r, -45, -1);
-        obstacles.add(B);
+        for (int theta = 45; theta < 405; theta+=90) {
+          Obstacle A = new Obstacle(520, 50, colors[index], 2, r, theta, -1);
+          obstacles.add(A);
+          index++;
+           if (index >= 4) {
+             index = 0;
+           }
+        }
       }
-     for (int r = -150; r <= 150; r+=50) {
+      for (int r = 50; r <= 150; r += 50) {
       //creates obstacle
-        Obstacle A = new Obstacle(200, 50, colors[index], 2, r, 90, 1);
-        obstacles.add(A);
-        Obstacle B = new Obstacle(200, 50, colors[index], 2, r, 0, 1);
-        obstacles.add(B);
+        for (int theta = 0; theta < 360; theta+=90) {
+          Obstacle A = new Obstacle(180, 50, colors[index], 2, r, theta, 1);
+          obstacles.add(A);
+          index++;
+            if (index >= 4) {
+             index = 0;
+           }
+        }
       }
+     
 }
