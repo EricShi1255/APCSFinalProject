@@ -5,6 +5,7 @@ public class Obstacle extends GameElement {
   private int cx, cy; //for polar, coords for center (not 0,0)
   private int r;
   private float theta; //for polar, theta in radians
+  private int directn; //-1 --> counterclkwise, 1 --> clockwise
   private color colorful;
  
   // 0 --> none || 1 --> horizontal || 2 --> rotational
@@ -21,7 +22,7 @@ public class Obstacle extends GameElement {
   }
   
   //polar
-  public Obstacle(int xcor, int ycor, color COLOR, int orienta, int xr, float xtheta) {
+  public Obstacle(int xcor, int ycor, color COLOR, int orienta, int xr, float xtheta, int directa) {
     super(xcor,ycor,COLOR);
     cx = xcor;
     cy = ycor;
@@ -31,6 +32,7 @@ public class Obstacle extends GameElement {
     r = xr;
     //theta given in degrees just bc
     theta = xtheta * PI / 180;
+    directn = directa;
     
     x = cx + (int)(r * cos(theta)); 
     y = cy + (int)(r * sin(theta));
@@ -90,7 +92,7 @@ public class Obstacle extends GameElement {
      //swapping to degrees bc
      //i hate radians 
      theta = theta * 180 / PI;
-     theta += 1;
+     theta += 1 * directn;
      theta = theta * PI / 180;
       
      //convert & set to rectangular
