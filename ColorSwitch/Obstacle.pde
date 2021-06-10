@@ -85,33 +85,28 @@ public class Obstacle extends GameElement {
       //do nothing special
     }
     
-    if (orient == -1) {
-      //convert to polar
-      //centered around: (350,y);
-      float diffy = y - 500;
-      float diffx = x - 350;
-      if (diffx == 0 && diffy > 0) {
-        diffx = 0.0000001;
-      }
-      if (diffx == 0 && diffy > 0) {
-        diffx = -0.0000001;
-      }
-      float theta = atan(diffy / diffx);
-      
-      int r = (int)( sqrt((x*x - 350*350) + (y*y - 500*500)) );
-      
-      theta+=0.005;
-      //theta = (int)(theta);     
+    if (orient == 2) {
+     
+     //swapping to degrees bc
+     //i hate radians 
+     theta = theta * 180 / PI;
+     theta += 1;
+     theta = theta * PI / 180;
       
      //convert & set to rectangular
-     x = x + (int)(r * cos(theta));
-     y = y + (int)(r * sin(theta));  
+     x = cx + (int)(r * cos(theta));
+     y = cy + (int)(r * sin(theta));  
     }
  
   }
   public void move() {
     //general movement
-    y += dy;
+    if (orient != 2) {
+      y += dy;
+    }
+    if (orient == 2) {
+      cy += dy;
+    }
   }
   
   public void move(int nx, int ny) {

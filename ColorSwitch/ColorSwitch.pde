@@ -22,8 +22,8 @@ void setup() {
   Bouncy A = new Bouncy(350,750, WHITE);
   bouncies.add(A);
   
-  Obstacle B = new Obstacle(350, 200, BLUE, 0); 
-  obstacles.add(B);
+  //Obstacle B = new Obstacle(350, 200, BLUE, 0); 
+  //obstacles.add(B);
   
   Food C = new Food(350, 600, BLUE); 
   foodies.add(C);
@@ -48,12 +48,12 @@ void newObstacle() {
 void newFood() {
   boolean create = true; 
   for (Food element: foodies) {
-    if (element.getY() < 350) {
+    if (element.getY() < 400) {
       create = false;
     }
   }
   for (Obstacle element: obstacles) {
-    if (element.getY() < 250) {
+    if (element.getY() < 400) {
       create = false;
     }
   }
@@ -159,7 +159,7 @@ void keyPressed() {
   }  
 }
 
-//---obstacle methods---//
+//---obstacle methods below this line---//
 public void gate() {
    int rnd = new Random().nextInt(colors.length);
    for (int i = 0; i < 2; i++) {
@@ -169,11 +169,19 @@ public void gate() {
 }
 
 public void circley() {
-  int r = 250;
-  int rnd = new Random().nextInt(colors.length);
+  //makes a ring with 4 colors
+  int r = 200;
+  //int index = new Random().nextInt(colors.length);
+  int index = 0;
   
-  for (float theta = 0; theta <= 360; theta+=20) {
-    Obstacle A = new Obstacle(350, 150, colors[rnd], 2, r, theta);
+  for (float theta = 0; theta <= 360; theta+=30) {
+    if (theta % 90 == 0) {
+      index++;
+    }
+    if (index >= 4) {
+      index = 0;
+    }
+    Obstacle A = new Obstacle(350, 100, colors[index], 2, r, theta);
     obstacles.add(A);
   }
 }
