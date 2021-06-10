@@ -19,6 +19,11 @@ public class Obstacle extends GameElement {
     colorful = COLOR;
     dy = 5;
     orient = orienta;
+    /*
+    int[] directions = {-1,1};
+    int rnd = new Random().nextInt(directions.length);
+    directn = directions[rnd];
+    */
   }
   
   //polar

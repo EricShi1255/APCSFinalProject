@@ -54,9 +54,6 @@ public class Bouncy extends GameElement {
     circle(0,850,10);
     circle(700,850,10);
   }
-  public boolean isDead() {
-    return false;
-  }
   public void addScore() {
     score++;
   }
