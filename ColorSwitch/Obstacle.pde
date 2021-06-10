@@ -1,10 +1,11 @@
 import java.util.Random;
 
 public class Obstacle extends GameElement {
-  private int x, y, dy;
+  private int x, y, dy; //for rectangular
+  private int r, theta; //for polar 
   private color colorful;
  
-  // 0 --> none 1 --> horizontal 2 --> rotational
+  // 0 --> none || 1 --> horizontal || 2 --> rotational
   private int orient;
   
   public Obstacle(int xcor, int ycor, color COLOR, int orienta) {
@@ -52,16 +53,47 @@ public class Obstacle extends GameElement {
   }
   
   //y-direction movement
+  public void moveB() {
+    //horizontal x-directional
+    if (orient == 1) {
+      x += dy;
+      if (x > 700) {
+        x = 0;
+      }
+    }
+    if (orient == 0) {
+      //do nothing special
+    }
+    
+    if (orient == 2) {
+      //convert to polar
+      //centered around: (350,y);
+      float diffy = y - 500;
+      float diffx = x - 350;
+      if (diffx == 0 && diffy > 0) {
+        diffx = 0.0000001;
+      }
+      if (diffx == 0 && diffy > 0) {
+        diffx = -0.0000001;
+      }
+      float theta = atan(diffy / diffx);
+      
+      int r = (int)( sqrt((x*x - 350*350) + (y*y - 500*500)) );
+      
+      theta+=0.005;
+      //theta = (int)(theta);     
+      
+     //convert & set to rectangular
+     x = x + (int)(r * cos(theta));
+     y = y + (int)(r * sin(theta));  
+    }
+ 
+  }
   public void move() {
+    //general movement
     y += dy;
   }
-  //x-direction movement
-  public void moveB() {
-    x += dy;
-    if (x > 700) {
-      x = 0;
-    }
-  }
+  
   public void move(int nx, int ny) {
     x = nx;
     y = ny;
