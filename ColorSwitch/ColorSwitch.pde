@@ -22,7 +22,7 @@ void setup() {
   Bouncy A = new Bouncy(350,750, WHITE);
   bouncies.add(A);
   
-  Obstacle B = new Obstacle(350, 200, BLUE); 
+  Obstacle B = new Obstacle(350, 200, BLUE, 0); 
   obstacles.add(B);
   
   Food C = new Food(350, 600, BLUE); 
@@ -41,6 +41,7 @@ void newObstacle() {
     //Obstacle B = new Obstacle(350, 150); 
     //obstacles.add(B);
    circley();
+   //gate();
   }
 }
 
@@ -105,7 +106,7 @@ void draw() {
         gameover = true;
       }
     }
-    //blockade.moveB();
+    blockade.moveB();
     blockade.display();
   }
   
@@ -162,21 +163,17 @@ void keyPressed() {
 public void gate() {
    int rnd = new Random().nextInt(colors.length);
    for (int i = 0; i < 2; i++) {
-     Obstacle A = new Obstacle(i*350, 150, colors[rnd]);
+     Obstacle A = new Obstacle(i*350, 150, colors[rnd], 1);
      obstacles.add(A);
    }
 }
 
 public void circley() {
   int r = 250;
-  int nx;
-  int ny;
   int rnd = new Random().nextInt(colors.length);
   
-  for (float theta = 0; theta <= 540 ; theta+=60) {
-    nx = (int)(r * cos(theta));
-    ny = (int)(r * sin(theta));
-    Obstacle A = new Obstacle(350+nx,ny,colors[rnd]);
+  for (float theta = 0; theta <= 360; theta+=20) {
+    Obstacle A = new Obstacle(350, 150, colors[rnd], 2, r, theta);
     obstacles.add(A);
   }
 }
