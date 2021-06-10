@@ -40,6 +40,9 @@ public class Food extends GameElement{
   public int getY() {
     return y;
   }
+  public void setColor(color c) {
+    colorful = c;
+  }
   public color getColor() {
      return colorful;
   }
