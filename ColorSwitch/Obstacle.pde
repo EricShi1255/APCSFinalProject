@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Obstacle extends GameElement {
-  private int x, y, dy; //for rectangular
+  private int x, y, dy, dx; //for rectangular
   private int cx, cy; //for polar, coords for center (not 0,0)
   private int r;
   private float theta; //for polar, theta in radians
@@ -12,7 +12,7 @@ public class Obstacle extends GameElement {
   private int orient;
   
   //rectangular
-  public Obstacle(int xcor, int ycor, color COLOR, int orienta) {
+  public Obstacle(int xcor, int ycor, color COLOR, int orienta, int directa, int dx) {
     super(xcor,ycor,COLOR);
     x = xcor;
     y = ycor;
@@ -24,6 +24,8 @@ public class Obstacle extends GameElement {
     int rnd = new Random().nextInt(directions.length);
     directn = directions[rnd];
     */
+    directn = directa;
+    this.dx = dx;
   }
   
   //polar
@@ -68,9 +70,11 @@ public class Obstacle extends GameElement {
   }
   
   public void display() {
+    stroke(colorful);
     fill(colorful);
     circle(x,y,50);
     //rect(x,y,80,50);
+    stroke(0);
   }
   
   public void display2() {
@@ -83,9 +87,12 @@ public class Obstacle extends GameElement {
   public void moveB() {
     //horizontal x-directional
     if (orient == 1) {
-      x += dy;
+      x += dx * directn;
       if (x > 700) {
         x = 0;
+      }
+      if (x < 0) {
+        x = 700;
       }
     }
     if (orient == 0) {
