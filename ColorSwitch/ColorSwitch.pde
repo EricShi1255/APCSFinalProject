@@ -43,10 +43,11 @@ void newObstacle() {
     }
   }
   if (create) {
-   int rand = new Random().nextInt(4);
-   //int rand = 0;
+   int rand = new Random().nextInt(5);
+   //int rand = 4;
    if (rand == 0) {
-     circley();
+     int r = 160 + (int)(Math.random() * 100);
+     circley(r,1,1);
    }
    if (rand == 1) {
      plusSign();
@@ -56,6 +57,9 @@ void newObstacle() {
    }
    if (rand == 3) {
      gate2();
+   }
+   if (rand == 4) {
+     circley2();
    }
    
    //Obstacle B = new Obstacle(350, 150); 
@@ -195,7 +199,7 @@ public void gate() {
      if (rnd >= 4) {
        rnd = 0;
      }
-     Obstacle A = new Obstacle(i*58, -450, colors[rnd], 1,1, 3);
+     Obstacle A = new Obstacle(i*58, -400, colors[rnd], 1,1, 3);
      obstacles.add(A);
      
      Obstacle B = new Obstacle(i*58, 0, colors[rnd], 1,-1, 2);
@@ -208,7 +212,7 @@ public void gate() {
      */
     
    }
-    Food ALOE = new Food(350,-225);
+    Food ALOE = new Food(350,-200);
     foodies.add(ALOE);
 }
 
@@ -234,9 +238,9 @@ public void gate2() {
    }
 }
 
-public void circley() {
+public void circley(int r, int directa, int rotspeed) {
   //makes a ring with 4 colors || centered around (350, y);
-  int r = 160 + (int)(Math.random() * 100);
+  //int r = 160 + (int)(Math.random() * 100);
   //int index = new Random().nextInt(colors.length);
   int index = 0;
   
@@ -256,9 +260,14 @@ public void circley() {
       index = 0;
     }
     //creates obstacle
-    Obstacle A = new Obstacle(350, 0, colors[index], 2, r, theta, 1);
+    Obstacle A = new Obstacle(350, 0, colors[index], 2, r, theta, directa, rotspeed);
     obstacles.add(A);
   }
+}  
+public void circley2() {
+  //makes a double ring instead of single ring
+  circley(200,1,2);
+  circley(250,-1,1);
 }  
 
 public void plusSign() {
@@ -269,7 +278,7 @@ public void plusSign() {
       for (int r = 50; r <= 150; r += 50) {
       //creates obstacle
         for (int theta = 0; theta < 360; theta+=90) {
-          Obstacle A = new Obstacle(533, 0, colors[index], 2, r, theta, -1);
+          Obstacle A = new Obstacle(533, 0, colors[index], 2, r, theta, -1,1);
           obstacles.add(A);
           index++;
            if (index >= 4) {
@@ -280,7 +289,7 @@ public void plusSign() {
       for (int r = 50; r <= 150; r += 50) {
       //creates obstacle
         for (int theta = 0; theta < 360; theta+=90) {
-          Obstacle A = new Obstacle(177, 0, colors[index], 2, r, theta, 1);
+          Obstacle A = new Obstacle(177, 0, colors[index], 2, r, theta, 1,1);
           obstacles.add(A);
           index++;
             if (index >= 4) {
