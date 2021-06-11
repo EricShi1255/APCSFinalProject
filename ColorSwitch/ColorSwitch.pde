@@ -43,15 +43,19 @@ void newObstacle() {
     }
   }
   if (create) {
-   int rand = new Random().nextInt(10);
-   if (rand < 4) {
+   int rand = new Random().nextInt(4);
+   //int rand = 0;
+   if (rand == 0) {
      circley();
    }
-   if (rand >= 4 && rand <= 6) {
+   if (rand == 1) {
      plusSign();
    }
-   if (rand > 6) {
+   if (rand == 2) {
      gate();
+   }
+   if (rand == 3) {
+     gate2();
    }
    
    //Obstacle B = new Obstacle(350, 150); 
@@ -75,7 +79,7 @@ void newFood() {
     }
   }
   if (create) {
-    Food C = new Food(350, 50); 
+    Food C = new Food(350, 0); 
     foodies.add(C);
   }
 }
@@ -182,6 +186,7 @@ void keyPressed() {
 
 //---obstacle methods below this line---//
 public void gate() {
+   //double thirdrow = Math.random(); edit: useless, too hard
    int rnd = 0;
    for (int i = 0; i < 12; i++) {
      if (i % 3 == 0) {
@@ -190,25 +195,59 @@ public void gate() {
      if (rnd >= 4) {
        rnd = 0;
      }
-     Obstacle A = new Obstacle(i*58, 150, colors[rnd], 1);
+     Obstacle A = new Obstacle(i*58, -450, colors[rnd], 1,1, 3);
      obstacles.add(A);
+     
+     Obstacle B = new Obstacle(i*58, 0, colors[rnd], 1,-1, 2);
+     obstacles.add(B);
+     /*
+     if (thirdrow > 0.7) {
+       Obstacle C = new Obstacle(i*70, 200, colors[rnd], 1,-1, 3);
+       obstacles.add(C);
+     }
+     */
+    
+   }
+    Food ALOE = new Food(350,-225);
+    foodies.add(ALOE);
+}
+
+public void gate2() {
+   
+   //int rnd = 0;
+   int rnd = new Random().nextInt(colors.length);
+   for (int xcor = 0; xcor < 4; xcor++) { // x coords
+     
+     for (int i = 0; i < 12; i++) { // y coords
+       
+       Obstacle A = new Obstacle(200*xcor, i*-10, colors[rnd], 1,1, 3);
+       obstacles.add(A);
+     
+       Obstacle B = new Obstacle(700-(200*xcor), i*-10, colors[rnd], 1,-1, 3);
+       obstacles.add(B); 
+     }
+     rnd++;
+     if (rnd >= 4) {
+       rnd = 0;
+     }
+     
    }
 }
 
 public void circley() {
   //makes a ring with 4 colors || centered around (350, y);
-  int r = 150 + (int)(Math.random() * 100);
+  int r = 160 + (int)(Math.random() * 100);
   //int index = new Random().nextInt(colors.length);
   int index = 0;
   
   //chance of food in middle of wheel
-    if (Math.random() > 0.8) {
-      Food ALOE = new Food(350,100);
+    if (Math.random() > 0.2) {
+      Food ALOE = new Food(350,0);
       foodies.add(ALOE);
       
     }
   
-  for (float theta = 0; theta <= 360; theta+=30) {
+  for (float theta = 0; theta <= 360; theta+=18) {
     //loops through color array
     if (theta % 90 == 0) {
       index++;
@@ -217,19 +256,20 @@ public void circley() {
       index = 0;
     }
     //creates obstacle
-    Obstacle A = new Obstacle(350, 50, colors[index], 2, r, theta, 1);
+    Obstacle A = new Obstacle(350, 0, colors[index], 2, r, theta, 1);
     obstacles.add(A);
   }
 }  
 
 public void plusSign() {
     //makes a plus sign that spins (yeah)/
-    int index = new Random().nextInt(colors.length);
+    //int index = new Random().nextInt(colors.length);
+    int index = 0;
     
       for (int r = 50; r <= 150; r += 50) {
       //creates obstacle
-        for (int theta = 45; theta < 405; theta+=90) {
-          Obstacle A = new Obstacle(520, 50, colors[index], 2, r, theta, -1);
+        for (int theta = 0; theta < 360; theta+=90) {
+          Obstacle A = new Obstacle(533, 0, colors[index], 2, r, theta, -1);
           obstacles.add(A);
           index++;
            if (index >= 4) {
@@ -240,7 +280,7 @@ public void plusSign() {
       for (int r = 50; r <= 150; r += 50) {
       //creates obstacle
         for (int theta = 0; theta < 360; theta+=90) {
-          Obstacle A = new Obstacle(180, 50, colors[index], 2, r, theta, 1);
+          Obstacle A = new Obstacle(177, 0, colors[index], 2, r, theta, 1);
           obstacles.add(A);
           index++;
             if (index >= 4) {
