@@ -246,8 +246,17 @@ public void circley(int r, int directa, int rotspeed) {
   
   //chance of food in middle of wheel
     if (Math.random() > 0.2) {
-      Food ALOE = new Food(350,0);
-      foodies.add(ALOE);
+      //check if a food is already there first (from circely2) 
+      boolean hasfood = false;
+      for (Food element: foodies) {
+        if (element.getX() == 350 && element.getY() == 0) {
+          hasfood = true;
+        }
+      }
+      if (!hasfood) {
+        Food ALOE = new Food(350,0);
+        foodies.add(ALOE);
+      }
       
     }
   
@@ -299,3 +308,4 @@ public void plusSign() {
       }
      
 }
+//x
